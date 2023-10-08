@@ -32,6 +32,8 @@ jobs:
         uses: crazy-max/ghaction-docker-meta@v1
         with:
           images: ${{ env.DOCKER_IMAGE }}
+          tag-match: v(.*)
+          tag-match-group: 1
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
