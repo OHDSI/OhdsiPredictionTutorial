@@ -17,6 +17,10 @@ RUN R -e "install.packages('kableExtra')"
 # Set an argument for the app name
 ARG APP_NAME
 
+# Set arguments for the GitHub branch and commit id abbreviation
+ARG GIT_BRANCH=unknown
+ARG GIT_COMMIT_ID_ABBREV=unknown
+
 # Set workdir and copy app files
 WORKDIR /srv/shiny-server/${APP_NAME}
 COPY . .
