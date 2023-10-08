@@ -19,13 +19,19 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+            
       - name: Docker meta
         id: docker_meta
         uses: crazy-max/ghaction-docker-meta@v1
         with:
           images: ${{ env.DOCKER_IMAGE }}
-          tag-match: v(.*)
-          tag-match-group: 1
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -44,6 +50,8 @@ jobs:
         with:
           context: ./
           file: ./Dockerfile
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache,mode=max
           platforms: linux/amd64,linux/arm64
           push: true
           build-args: |
