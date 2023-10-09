@@ -16,7 +16,7 @@ docker-compose.yml
 Update the Dockerfile based on the OS, R, Python etc. dependencies for your Shiny application.
 
 ## Step 4
-Update the docker-compose.yml file to use your Docker service name, Shiny app name.and Docker container image name instead of the example "ohdsipredictiontutorial", "ohdsi/ohdsipredictiontutorial" and "OhdsPredictionTutorial". Note these values are case-sensitive. The docker image name must be in all lower-case.
+Update the docker-compose.yml file to use your Docker service name, Shiny app name.and Docker container image name instead of the example "ohdsipredictiontutorial", "ohdsi/ohdsipredictiontutorial" and "OhdsPredictionTutorial". Note these values are case-sensitive. The docker image name must be in all lower-case. If you are using a data file then update the volumes section with the full file path name on your local computer.
 
 ## Step 5
 Develop and debug the Docker image on your local computer which has Docker installed. The docker-compose.yml file can be used for this.
