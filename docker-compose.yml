@@ -8,3 +8,5 @@ services:
         APP_NAME: OhdsiPredictionTutorial
     ports:
       - "3838:3838"
+    volumes:
+      - /tmp/databaseFile.sqlite:/data/OhdsiPredictionTutorial/databaseFile.sqlite
