@@ -10,8 +10,14 @@ RUN apt-get update && \
 # install additional required Python packages
 RUN pip install faicons
 
+# install OhdsiShinyModules R package from GitHub, temporarily adding a GitHub Personal Access Token (PAT) to the Renviron file
+RUN --mount=type=secret,id=build_github_pat \
+	cp /usr/local/lib/R/etc/Renviron /tmp/Renviron \
+        && echo "GITHUB_PAT=$(cat /run/secrets/build_github_pat)" >> /usr/local/lib/R/etc/Renviron \
+        && R -e "remotes::install_github(repo = 'OHDSI/OhdsiShinyModules@v1.0.1', upgrade = 'always')" \
+        && cp /tmp/Renviron /usr/local/lib/R/etc/Renviron
+
 # install additional required R packages
-RUN R -e "remotes::install_github('OHDSI/OhdsiShinyModules@v1.0.1')"
 RUN R -e "install.packages('kableExtra')"
 
 # Set an argument for the app name
