@@ -30,8 +30,12 @@ Use the standard command to run the Docker image on your local computer:
 docker compose up -d
 ```
 
-# Upload your data file to the results.ohdsi.org data server
-This is optional. It is not required if the data is stored in a new schema in the OHDSI Shiny database (preferred). See an example of the data file path to use in your R code, in the server.R file in this GitHub repo.
+# Request a new schema in the OHDSI Shiny PostgreSQL database if your data is large ( >= 1GB)
+[Fill out this request form](https://forms.gle/ZHuqRMVRu8e5FNjE6)
+You will be provided with a database account with read/write access to the new database schema.
+
+Alternatively, if the data is small < 1GB, you may include the data files inside your Shiny App Docker container.
+See an example of the data file path to use in your R code, in the server.R file in this GitHub repo.
 
 ## Create a GitHub (release) action in your repo to build and push the Docker image to Docker Hub
 Use the below example GitHub Action yml in the below file in this repo as a template to create your GitHub repo gitHub action:
